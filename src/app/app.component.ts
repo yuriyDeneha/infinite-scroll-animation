@@ -14,7 +14,7 @@ export class AppComponent {
 
   throttle = 500;
   scrollDistance = 0.5;
-  scrollUpDistance = 0.5;
+  scrollUpDistance = 4;
   constructor() {
     this.addItems('DOWN', this.sum);
   }
@@ -28,7 +28,7 @@ export class AppComponent {
     if (direction === 'UP') {
       console.log('---HERE', -amount, this.adddedOnUi);
       for (let i = 0; i > -amount; i--) {
-        this.array.unshift(i);
+        this.array.unshift(this.array[0] - 1);
       }
     }
   }
