@@ -1,9 +1,6 @@
 //our root app component
 import { Component } from '@angular/core';
 
-const nisPackage = require('../../package.json');
-declare const chance;
-
 @Component({
   selector: 'my-app',
   styleUrls: ['./app.component.scss'],
@@ -15,21 +12,24 @@ export class AppComponent {
   addOnScroll = 1;
   adddedOnUi = 0;
 
-  throttle = 1000;
+  throttle = 500;
   scrollDistance = 0.5;
   scrollUpDistance = 0.5;
-  direction = '';
-  modalOpen = false;
-
-  nisVersion = nisPackage.dependencies['ngx-infinite-scroll'];
-
   constructor() {
-    this.addItems('push');
+    this.addItems('DOWN', this.sum);
   }
 
-  addItems(_method) {
-    for (let i = this.adddedOnUi; i < this.sum; ++i) {
-      this.array[_method]([i, ' ', i, ' ', i, ' ', i].join(''));
+  addItems(direction: 'UP' | 'DOWN' = 'DOWN', amount = this.addOnScroll) {
+    if (direction === 'DOWN') {
+      for (let i = 0; i < amount; ++i) {
+        this.array.push(i + this.adddedOnUi);
+      }
+    }
+    if (direction === 'UP') {
+      console.log('---HERE', -amount, this.adddedOnUi);
+      for (let i = 0; i > -amount; i--) {
+        this.array.unshift(i);
+      }
     }
   }
 
@@ -37,15 +37,13 @@ export class AppComponent {
     console.log('DOWN');
     this.adddedOnUi = this.sum;
     this.sum += this.addOnScroll;
-    this.addItems('push');
-
-    this.direction = 'down';
+    this.addItems('DOWN');
   }
 
   onUp(ev) {
-    // console.log('UP');
-    // this.sum += this.addOnScroll;
-    // this.addItems('unshift');
-    // this.direction = 'up';
+    console.log('UP');
+    this.adddedOnUi = this.sum;
+    this.sum += this.addOnScroll;
+    this.addItems('UP');
   }
 }
