@@ -12,7 +12,7 @@ declare const chance;
 export class AppComponent {
   array = [];
   sum = 30;
-  addOnScroll = 5;
+  addOnScroll = 1;
   adddedOnUi = 0;
 
   throttle = 1000;
@@ -28,7 +28,7 @@ export class AppComponent {
   }
 
   addItems(_method) {
-    for (let i = this.sum - this.adddedOnUi; i < this.sum; ++i) {
+    for (let i = this.adddedOnUi; i < this.sum; ++i) {
       this.array[_method]([i, ' ', i, ' ', i, ' ', i].join(''));
     }
   }
