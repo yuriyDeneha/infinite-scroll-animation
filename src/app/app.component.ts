@@ -13,10 +13,11 @@ export class AppComponent {
   array = [];
   sum = 30;
   addOnScroll = 5;
+  adddedOnUi = 0;
 
-  throttle = 100;
-  scrollDistance = 1;
-  scrollUpDistance = 1;
+  throttle = 1000;
+  scrollDistance = 0.5;
+  scrollUpDistance = 0.5;
   direction = '';
   modalOpen = false;
 
@@ -27,13 +28,14 @@ export class AppComponent {
   }
 
   addItems(_method) {
-    for (let i = 0; i < this.sum; ++i) {
+    for (let i = this.sum - this.adddedOnUi; i < this.sum; ++i) {
       this.array[_method]([i, ' ', i, ' ', i, ' ', i].join(''));
     }
   }
 
   onScrollDown(ev) {
     console.log('DOWN');
+    this.adddedOnUi = this.sum;
     this.sum += this.addOnScroll;
     this.addItems('push');
 
