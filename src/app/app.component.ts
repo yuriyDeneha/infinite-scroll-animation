@@ -1,23 +1,23 @@
 //our root app component
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
-const nisPackage = require("../../package.json");
+const nisPackage = require('../../package.json');
 
 @Component({
-  selector: "my-app",
-  styleUrls: ["./app.component.css"],
-  templateUrl: "./app.component.html"
+  selector: 'my-app',
+  styleUrls: ['./app.component.scss'],
+  templateUrl: './app.component.html',
 })
 export class AppComponent {
   array = [];
-  sum = 100;
+  sum = 20;
   throttle = 300;
   scrollDistance = 1;
   scrollUpDistance = 2;
-  direction = "";
+  direction = '';
   modalOpen = false;
 
-  nisVersion = nisPackage.dependencies["ngx-infinite-scroll"];
+  nisVersion = nisPackage.dependencies['ngx-infinite-scroll'];
 
   constructor() {
     this.appendItems(0, this.sum);
@@ -25,36 +25,36 @@ export class AppComponent {
 
   addItems(startIndex, endIndex, _method) {
     for (let i = 0; i < this.sum; ++i) {
-      this.array[_method]([i, " ", this.generateWord()].join(""));
+      this.array[_method]([i, ' ', this.generateWord()].join(''));
     }
   }
 
   appendItems(startIndex, endIndex) {
-    this.addItems(startIndex, endIndex, "push");
+    this.addItems(startIndex, endIndex, 'push');
   }
 
   prependItems(startIndex, endIndex) {
-    this.addItems(startIndex, endIndex, "unshift");
+    this.addItems(startIndex, endIndex, 'unshift');
   }
 
   onScrollDown(ev) {
-    console.log("scrolled down!!", ev);
+    console.log('scrolled down!!', ev);
 
     // add another 20 items
     const start = this.sum;
-    this.sum += 20;
+    this.sum += 5;
     this.appendItems(start, this.sum);
 
-    this.direction = "down";
+    this.direction = 'down';
   }
 
   onUp(ev) {
-    console.log("scrolled up!", ev);
+    console.log('scrolled up!', ev);
     const start = this.sum;
     this.sum += 20;
     this.prependItems(start, this.sum);
 
-    this.direction = "up";
+    this.direction = 'up';
   }
   generateWord() {
     return chance.word();
