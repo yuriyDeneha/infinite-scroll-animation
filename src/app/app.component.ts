@@ -28,7 +28,7 @@ export class AppComponent {
 
   addItems(_method) {
     for (let i = 0; i < this.sum; ++i) {
-      this.array[_method]([i, ' ', this.generateWord()].join(''));
+      this.array[_method]([i, ' ', i, ' ', i, ' ', i].join(''));
     }
   }
 
@@ -45,9 +45,5 @@ export class AppComponent {
     // this.sum += this.addOnScroll;
     // this.addItems('unshift');
     // this.direction = 'up';
-  }
-
-  generateWord() {
-    return chance.word();
   }
 }
