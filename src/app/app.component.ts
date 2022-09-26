@@ -59,8 +59,4 @@ export class AppComponent {
   generateWord() {
     return chance.word();
   }
-
-  toggleModal() {
-    this.modalOpen = !this.modalOpen;
-  }
 }
