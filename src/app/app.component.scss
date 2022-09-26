@@ -25,13 +25,12 @@ p {
   padding: 20px;
   font-weight: 800;
   width: 200px;
-  margin-bottom: 15px;
+  margin: 5px;
   border-radius: 8px;
   background-image: linear-gradient(147deg, #ff7c34 0%, #c31269 74%);
   transition: all 0.35s ease-in-out;
-  opacity: 1;
-  transform: scale(0.7);
   box-shadow: 0px 7px 16px 0px rgba(41, 53, 108, 0.25);
+  animation: fadeInBottom 1s 2s ease-out;
 
   &.item-hide {
     opacity: 0;
@@ -57,3 +56,78 @@ p {
     margin-bottom: 155px;
   }
 }
+
+@keyframes fadeInBottom {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// $(document).ready(function () {
+//   var Scrollbar = window.Scrollbar;
+
+//   Scrollbar.use(window.OverscrollPlugin);
+
+//   var customScroll = Scrollbar.init(document.querySelector('.js-scroll-list'), {
+//     plugins: {
+//       overscroll: true
+//     }
+//   });
+
+//   var listItem = $('.js-scroll-list-item');
+
+//   listItem.eq(0).addClass('item-focus');
+//   listItem.eq(1).addClass('item-next');
+
+//   customScroll.addListener(function (status) {
+
+//     var $content = $('.js-scroll-content');
+
+//     var viewportScrollDistance = 0;
+
+//     viewportScrollDistance = status.offset.y;
+//     var viewportHeight = $content.height();
+//     var listHeight = 0;
+//     var $listItems = $content.find('.js-scroll-list-item');
+//     for (var i = 0; i < $listItems.length; i++) {
+//       listHeight += $($listItems[i]).height();
+//     }
+
+//     var top = status.offset.y;
+//     // console.log(top);
+//     var visibleCenterVertical = 0;
+//     visibleCenterVertical = top;
+
+//     var parentTop = 1;
+//     var $lis = $('.js-scroll-list-item');
+//     var $focusLi;
+//     for (var i = 0; i < $lis.length; i++) {
+//       var $li = $($lis[i]);
+//       var liTop = $li.position().top;
+//       var liRelTop = liTop - parentTop;
+
+//       var distance = 0;
+//       var distance = Math.abs(top - liRelTop);
+//       var maxDistance = $('.js-scroll-content').height() / 2;
+//       var distancePercent = distance / (maxDistance / 100);
+
+//       if (liRelTop + $li.parent().scrollTop() > top) {
+//         if (!$li.hasClass('item-focus')) {
+//           $li.prev().addClass('item-hide');
+//           $lis.removeClass('item-focus');
+//           $lis.removeClass('item-next');
+//         }
+//         $li.removeClass('item-hide');
+//         $li.addClass('item-focus');
+//         $li.next().addClass('item-next');
+//         break;
+//       }
+//     }
+//   });
+
+// });
